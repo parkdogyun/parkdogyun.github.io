@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>mainindex</title>
+  <style>
+     html, body{
+        width: 1024px;
+		height: 768px;
+	}
+	
+	body{
+		background: #202020;
+		font-size: 12pt;
+		font-weight: 200;
+		color: rgba(255,255,255,0.3);
+	}
+	
+	
+	h1, h2, h3{
+		font-weight: 600;
+		color: black;
+	}
+
+	
+	ol, ul{
+		padding: 0;
+
+	}
+	
+	p{
+        line-height: 150%;
+        color : black;
+    }
+   	
+	a{
+		color: skyblue;
+	}
+	
+	a:hover{
+		text-decoration: none;
+	}
+	
+	.container{
+		overflow: hidden;
+		margin: 0px auto;
+		width: 1200px;
+    } 
+
+    ul.style1{
+		margin: 0 auto;
+		padding: 0;
+		width: 80%;
+		overflow: hidden;
+		list-style: none;
+		text-align: left;
+		color: grey;
+	}
+	
+	ul.style1 li{
+		padding: 1.6em 0em 0em 0em;
+		margin: 0 0 2.5em 0;
+		border-top: 1px solid black; 
+	}
+
+	
+	ul.style1 p{
+		margin: 0;
+	}
+	
+	ul.style1 a{
+		display: block;
+		text-decoration: none;
+		color: #2D2D2D;
+	}
+	
+	ul.style1 a:hover{
+		text-decoration: underline;
+	}
+	
+	ul.style1 h3{
+		padding: 1em 0em 5px 0em;
+		text-transform: uppercase;
+		font-size: 1em;
+		font-weight: 400;
+	}
+	
+	ul.style1 .first{
+        
+        margin-bottom: 0px;
+        margin-top: 0px;
+        padding-top: 0px;
+        padding-bottom: 15px;
+		background: none;
+	}
+	
+	ul.style1 .LeftName{
+		float: left;
+		position: relative;
+		width: 80px;
+		height: 70px;
+		margin: 0.5em 1.5em 0em 0.5em;
+		padding: 1.5em 0em 1.5em 0em;
+		box-shadow: 0px 0px 0px 5px rgba(255,255,255,0.1);
+		line-height: normal;
+		text-align: center;
+		text-transform: uppercase;
+		text-shadow: 0px 1px 0px rgba(0,0,0,.2);
+		font-size: 16px;
+		font-weight: 450;
+		border-right: 1px solid rgba(0,0,0,.1); 
+	}
+	
+	ul.style1 .LeftName:after{
+		content: '';
+		display: block;
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		border-radius: 6px;
+	}
+	
+	ul.style1 .LeftName b{
+		display: block;
+		margin-top: 5px;
+		font-size: 20px;
+		font-weight: 700;
+	}
+	
+	ul.style1 .LeftName a:hover{
+		text-decoration: none;
+    }
+    
+    
+	.title
+	{
+		margin-bottom: 30px;
+	}
+	
+	.title h2
+	{
+        font-size: 48px;
+        color : black;
+	}
+	
+	.title .line_1
+	{
+		font-size: 25px;
+		color: grey;
+	}
+	#header
+	{
+		position: relative;
+		float: left;
+		width: 300px;
+		padding: 3em 0em;
+	}
+
+	#LeftHead
+	{
+		text-align: center;
+		margin-bottom: 4em;
+	}
+	
+	#LeftHead h1
+	{
+		display: block;
+	}
+	
+	#LeftHead a
+	{
+		text-decoration: none;
+		color: #FFF;
+	}
+	
+	#LeftHead span
+	{
+		padding-right: 0.5em;
+		text-transform: uppercase;
+		font-size: 0.90em;
+		color: rgba(255,255,255,0.3);
+	}
+
+	#LeftHead span a
+	{
+		color: rgba(255,255,255,0.5);
+	}
+	
+	#LeftHead img
+	{
+		display: inline-block;
+		margin-bottom: 1em;
+		border-radius: 50%;
+	}
+
+	#menu li
+	{
+		border-top: 1px solid rgba(255,255,255,0.08);
+	}
+	
+	#menu li a, #menu li span
+	{
+		display: block;
+		padding: 25px;
+		text-align: center;
+		text-decoration:  none;
+		font-weight: 700;
+		color: grey;
+	}
+	
+	#menu .MenuSelect a
+	{
+		background: #2980b9;
+		color: white;
+	}
+
+	#bgColor
+	{
+        background: (255.255.255.0.2);
+    }
+    
+	#main
+	{
+		overflow: hidden;
+		float: right;
+		width: 800px;
+		padding: 10px 50px 10px 50px;
+		background: #FFF;
+		text-align: center;
+	}
+
+	#introduce
+	{
+		overflow: hidden;
+		margin-bottom: 40px;
+		padding-top: 20px;
+		border-top: 1px solid rgba(0,0,0,0.08);
+	}
+
+
+  </style>
+</head>
+
+<body>
+<div id="bgColor" class="container">
+	<div id="header">
+		<div id="LeftHead">
+			<h1><a href="http://127.0.0.1:5500/mainindex.html">Park's homepage</a></h1>
+		</div>
+		<div id="menu">
+			<ul>
+				<li class="MenuSelect"><a href="#" title="">MAIN</a></li>
+				<li><a href="01_recent_find_hobby.html" title="">관심사</a></li>
+				<li><a href="02_dev_road_map.html" title="">개발자 roadmap</a></li>
+				<li><a href="03_make_id_psw.html" title="">회원가입</a></li>
+				<li><a href="04_toMemo.html" title="">주인에게 한마디 남기기</a></li>
+				<li></li>
+			</ul>
+		</div>
+	</div>
+	<div id="main">
+		<div id="welcome">
+			<div class="title">
+				<h2>어서오세요 ! 환영합니다 !</h2>
+				<span class="line_1">처음으로 만들어보는 홈페이지 제작입니다.</span>
+			</div>
+			<p>이건 <strong>진.짜.다</strong>. </p>
+			
+		</div>
+		<div id="introduce">
+			<div class="title">
+				<h2>자기소개</h2>
+				<span class="line_1">만든이를 소개합니다.</span>
+			</div>
+			<ul class="style1">
+				<li class="first">
+					<p class="LeftName"><a href="#"></a>01<b>신상<br>정보</b></a></p>
+                    <h3>이름 : 박도균</h3>
+                    <p>1993년 4월 19일생, 1남 1녀중 장남으로 태어나 약간은 게으르지만 
+                        남에게 피해를 안끼치기 위한 노력을 하는 사람이 되고자 한다.</p>
+                    <br>
+				</li>
+				<li class ="first">
+                    <p class="LeftName"><a href="#"></a>02<b>좋아<br>싫어</b></a></p>
+                    <h3>호불호</h3>
+                    <p>좋아하는것 : 볼링, 컴퓨터게임, 인터넷방송</p>
+                    <p>싫어하는것 : 발로하는 구기종목, 노래방</p>
+                    <br>
+                    </li>
+				<li></li>
+			</ul>
+		</div>
+	</div>
+    <footer>
+                
+    </footer>
+</div>
+</body>
+</html>

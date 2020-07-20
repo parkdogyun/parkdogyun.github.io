@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/jquery-3.5.1.js"></script>
+    <title>주인에게 한마디</title>
+</head>
+<body>
+    <h1>방명록</h1>
+    <hr>
+    <p>안녕하세요. 반갑습니다! 초라한 제 홈페이지를 방문해주셔서 감사합니다.</p>
+    <p>남기고싶은 말이나 조언을 남겨주세요 !</p>
+    <p>폭언과 욕설은 홈페이지 주인의 마음을 아프게 합니다!</p>
+    <input type="text" id="guest" placeholder="방문자 성함">
+    <input type="text" id="memo" placeholder="한마디 남기기">
+    <input type="button" value="남기기" onclick="saveMemo()";>
+    <script>
+        function saveMemo(){
+            var entry = {
+                guest : $("#guest").val(),
+                memo : $("#memo").val(),
+                date : Date.now()
+            };
+            console.log(entry);
+  
+            
+            var entryList = JSON.parse(localStorage.getItem("entryList"));
+            
+            if(entryList == null) entryList = [];
+  
+            entryList.push(entry);
+            var jsonStr = JSON.stringify(entryList);
+            localStorage.setItem("entryList", jsonStr); 
+  
+            
+              displayEntry();
+  
+  
+            $("#guest, #memo").val('');
+        }
+    </script>
+  
+    <table id="tbl-entry"></table>
+    <style>
+        table, th, td {
+            border : 1px solid #000;
+            border-collapse: collapse;
+            padding :5px;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function displayEntry(){
+            var $table = $("#tbl-entry");
+          $table.html("<><th>작성자</th><<th>남길말</th><th>작성일</th></tr>");
+  
+          var entryList = JSON.parse(localStorage.getItem("entryList"));
+  
+          $.each(entryList, function(i, entry){
+              console.log(i, entry);
+              var d = new Date(entry.date);
+              var tr = "<tr>"
+                      + "<td>" + entry.guest +"</td>"
+                      + "<td>" + entry.memo +"</td>"
+                      + "<td>" + (d.getMonth() +1) + "/" + d.getDate() +"</td>"
+                      + "</tr>";
+              $table.append(tr);
+          });
+  
+  
+        }
+    </script>
+</body>
+</html>

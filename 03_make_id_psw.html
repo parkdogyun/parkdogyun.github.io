@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/jquery-3.5.1.js"></script>
+    <title>회원가입 & 회원조회</title>
+    <style>
+        html{
+            background-color: #202020;
+        }
+        body{
+            background-color: white;
+            margin : 100px;
+            padding : 50px;
+            border : 20px solid grey;
+        }
+       
+    </style>
+    <script language="javascript">
+        function checkAll() {
+            if (!checkUserId(form.userId.value)) {
+                return false;
+            }
+            if (!checkPassword(form.userId.value, form.password1.value,    form.password2.value)) {
+                return false;
+            }
+            if (!checkMail(form.mail.value)) {
+                return false;
+            }
+            if (!checkName(form.name.value)) {
+                return false;
+            }
+            return true;
+        }
+     
+        
+        function checkExistData(value, dataName) {
+            if (value == "") {
+                alert(dataName + " 입력해주세요!");
+                return false;
+            }
+            return true;
+        }
+     
+        function checkUserId(id) {
+           
+            if (!checkExistData(id, "아이디를"))
+                return false;
+     
+            var idRegExp = /^[a-zA-z0-9]{4,12}$/;
+            if (!idRegExp.test(id)) {
+                alert("아이디는 영문 대소문자와 숫자 4~12자리로 입력해야합니다!");
+                form.userId.value = "";
+                form.userId.focus();
+                return false;
+            }
+            return true;
+        }
+     
+        function checkPassword(id, password1, password2) {
+           
+            if (!checkExistData(password1, "비밀번호를"))
+                return false;
+           
+            if (!checkExistData(password2, "비밀번호 확인을"))
+                return false;
+     
+            var password1RegExp = /^[a-zA-z0-9]{4,12}$/;
+            if (!password1RegExp.test(password1)) {
+                alert("비밀번호는 영문 대소문자와 숫자 4~12자리로 입력해야합니다!");
+                form.password1.value = "";
+                form.password1.focus();
+                return false;
+            }
+            
+            if (password1 != password2) {
+                alert("두 비밀번호가 맞지 않습니다.");
+                form.password1.value = "";
+                form.password2.value = "";
+                form.password2.focus();
+                return false;
+            }
+     
+            
+            if (id == password1) {
+                alert("아이디와 비밀번호는 같을 수 없습니다!");
+                form.password1.value = "";
+                form.password2.value = "";
+                form.password2.focus();
+                return false;
+            }
+            return true;
+        }
+     
+        function checkMail(mail) {
+            
+            if (!checkExistData(mail, "이메일을"))
+                return false;
+     
+            var emailRegExp = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
+            if (!emailRegExp.test(mail)) {
+                alert("이메일 형식이 올바르지 않습니다!");
+                form.mail.value = "";
+                form.mail.focus();
+                return false;
+            }
+            return true;
+        }
+     
+        function checkName(name) {
+            if (!checkExistData(name, "이름을"))
+                return false;
+     
+            var nameRegExp = /^[가-힣]{2,4}$/;
+            if (!nameRegExp.test(name)) {
+                alert("이름이 올바르지 않습니다.");
+                return false;
+            }
+            return true;
+        }
+    
+        function inputClear() {
+            document.getElementById("form").reset();
+        }
+        
+        function findMember(){
+            var key = $("#name").val();
+            var value = localStorage.getItem(key);
+            
+            console.log(value, typeof(value));
+            
+            if(value)
+                alert(value + "님은 가입된 상태입니다.");
+            else
+                alert("해당 회원이 존재하지 않습니다.");
+            
+        }
+
+        function saveMember(){
+        
+            var $savename = $("#name").val()
+            var $saveuserId = $("#userId").val()
+            
+            if($savename.val() == '' || $saveuserId.val() =='') return;
+
+            localStorage.setItem($savename.val(), $saveuserId.val());
+            $savename.val('');
+            $saveuserId.val('');
+
+            var memberList = JSON.parse(localStorage.getItem("memberList"));
+
+            if(memberList == null) memberList =[];
+
+            memberList.push(member);
+            var memberStr = JSON.stringify(memberList);
+            localStorage.setItem("memberList", memberStr);
+
+            localStorage.setItem($name.val(), $userId.val());
+
+        }
+        
+    </script>
+</head>
+<body>
+    <form name=form id="form" method="post" onsubmit="return checkAll()">
+        <table id="tableposi">
+          <tr>
+            <h2>회원 기본 정보</h2>
+          </tr>
+          
+          <tr>
+            <td>아이디</td>
+            <td><input type="text" name="userId" placeholder="아이디를 입력하세요"> 4~12자의 영문 대소문자와 숫자로만 입력</td>
+          </tr>
+          <tr>
+            <td>비밀번호</td>
+            <td><input type="password" name="password1" placeholder="비밀번호를 입력하세요"> 4~12자의 영문 대소문자와 숫자로만 입력</td>
+          </tr>
+          <tr>
+            <td>비밀번호 확인</td>
+            <td><input type="password" name="password2" placeholder="다시한번 입력하세요"></td>
+          </tr>
+          <tr>
+            <td>메일주소</td>
+            <td><input type="text" name="mail" placeholder="abc123@domain.com"></td>
+          </tr>
+          <tr>
+            <td>이름</td>
+            <td><input type="text" name="name" placeholder="이름을 입력하세요"></td>
+          </tr>
+          
+        </table>
+        <p id="btnposi">
+          <input type="submit" name="join" value="회원 가입" onclick="saveMember();">
+          <input type="reset" name="reset" value="다시 입력" onclick="inputClear();">
+          <h2>아이디로 회원조회</h2>
+          <input type="text" id="id" placeholder="아이디를 입력하세요">
+          <input type="button" value="회원조회" onclick="findMember();">
+        </p>
+      </form>
+</body>
+</html>
